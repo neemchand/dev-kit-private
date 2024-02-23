@@ -1,0 +1,97 @@
+version : "3"
+services:
+  dk-api:
+    build:
+      context: .
+      dockerfile: dockerfiles/Ci.Dockerfile
+    container_name: dk-api
+    depends_on:
+      - dk-pg
+    restart: always
+    ports:
+      - "1812:80"
+    environment:
+      APP_NAME: "Laravel API boilerplate"
+      DB_HOST: "dk-pg"
+      MAIL_HOST: "dk-mailpit"
+    networks:
+      dk-network:
+        ipv4_address: 18.12.1.1
+    extra_hosts:
+      - host.docker.internal:host-gateway
+
+  dk-pg:
+    image: postgres:15
+    container_name: dk-pg
+    volumes:
+      - dk-pg-disk:/var/lib/postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: testing
+    networks:
+      dk-network:
+        ipv4_address: 18.12.1.2
+
+  dk-mailpit:
+    image: 'axllent/mailpit:latest'
+    container_name: dk-mailpit
+    restart: always
+    networks:
+      dk-network:
+        ipv4_address: 18.12.1.3
+
+#  dk-q:
+#    build:
+#      context: .
+#      dockerfile: dockerfiles/QueueListener.Dockerfile
+#    container_name: dk-q
+#    depends_on:
+#      - dk-api
+#    volumes:
+#      - .:/var/www/html
+#    restart: unless-stopped
+#    networks:
+#      dk-network:
+#        ipv4_address: 18.12.1.4
+
+#  dk-0x:
+#    build:
+#      context: .
+#      dockerfile: dockerfiles/0x.Dockerfile
+#    container_name: dk-0x
+#    depends_on:
+#      - dk-api
+#    volumes:
+#      - .:/var/www/html
+#    restart: always
+#    networks:
+#      dk-network:
+#        ipv4_address: 18.12.1.5
+
+#  dk-fe-app:
+#    build:
+#      context: .
+#      dockerfile: dockerfiles/FeApp.Dockerfile
+#    container_name: dk-fe-app
+#    ports:
+#      - "1001:3000"
+#    volumes:
+#      - ./fe-app:/var/www/html
+#      #- ./dockerfiles:/var/www/html/dockerfiles
+#    restart: always
+#    networks:
+#      dk-network:
+#        ipv4_address: 18.12.1.6
+
+# On-disk storage of DB data, when containers are stopped
+volumes:
+  dk-pg-disk: {}
+
+# Local network for services running using this docker-compose config
+networks:
+  dk-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 18.12.0.0/16

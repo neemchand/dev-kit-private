@@ -8,7 +8,7 @@ servers:
 paths:
   /register:
     post:
-      summary: Register a new user
+      summary: Register a new user api
       requestBody:
         required: true
         content:

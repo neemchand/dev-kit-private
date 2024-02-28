@@ -22,7 +22,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/RegisterResponse'
-
+        500:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /login:
     post:
       summary: User login
@@ -106,7 +111,14 @@ components:
               type: boolean
         message:
           type: string
-
+    Error:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          description: A human-readable error message
+          type: string    
     LoginRequest:
       type: object
       properties:

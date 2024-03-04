@@ -33,7 +33,8 @@ Route::get('/api', function () {
 })->name('api');
 
 Route::get('/invitation/{signature}', [UserInvitationController::class, 'verify'])->name('users.invitation.verify');
-Route::get('/password-reset/{token}', [UserPasswordResetLinkController::class, 'verify'])->name('password.reset.verify');
+Route::get('/password-reset/{token}', [UserPasswordResetLinkController::class, 'verify'])
+    ->name('password.reset.verify');
 Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, 'verify'])
     ->middleware('throttle:6,1')
     ->name('verification.verify');
@@ -123,4 +124,4 @@ Route::prefix('/admin')->group(function () {
     });
 });
 
-
+Route::view('/swagger', 'swagger');

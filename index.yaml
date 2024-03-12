@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: dk-private
   version: 1.0.0
-  description: API for user registration, login, forgot password, and reset password
+  description: API for user registration, login, forgot password
 servers:
   - url: http://18.12.1.1/api/v1
 paths:
@@ -62,22 +62,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/ForgotPasswordResponse'
 
-  /reset-password:
-    post:
-      summary: Reset user password
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ResetPasswordRequest'
-      responses:
-        '200':
-          description: Password reset successful
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResetPasswordResponse'
 
 components:
   schemas:
@@ -177,19 +161,4 @@ components:
       properties:
         message:
           type: string
-
-    ResetPasswordRequest:
-      type: object
-      properties:
-        email:
-          type: string
-        new_password:
-          type: string
-        password_confirmation:
-          type: string
-
-    ResetPasswordResponse:
-      type: object
-      properties:
-        message:
-          type: string
+          

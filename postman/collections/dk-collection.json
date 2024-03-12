@@ -11,7 +11,7 @@
 			"name": "register",
 			"item": [
 				{
-					"name": "Register a new user api",
+					"name": "Register a new user",
 					"event": [
 						{
 							"listen": "test",
@@ -118,6 +118,39 @@
 							],
 							"cookie": [],
 							"body": "{\n  \"data\": {\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\",\n    \"email\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"id\": \"<integer>\",\n    \"onboarded\": \"<boolean>\"\n  },\n  \"message\": \"<string>\"\n}"
+						},
+						{
+							"id": "587ba867-dd10-4340-a8bd-39c758a2e574",
+							"name": "Unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"message\": \"<string>\"\n}"
 						}
 					]
 				}
@@ -331,6 +364,94 @@
 				}
 			],
 			"id": "63b708d9-bac2-45ee-8b60-50861bbd206b"
+		},
+		{
+			"name": "Reset user password",
+			"id": "0d2250f3-a3d5-404b-8e76-c302290c250b",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"<string>\",\n  \"new_password\": \"<string>\",\n  \"password_confirmation\": \"<string>\"\n}",
+					"options": {
+						"raw": {
+							"headerFamily": "json",
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/reset-password",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"reset-password"
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "cf9767ba-e380-4bd5-9dd9-89687a7ae680",
+					"name": "Password reset successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"<string>\",\n  \"new_password\": \"<string>\",\n  \"password_confirmation\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reset-password"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"message\": \"<string>\"\n}"
+				}
+			]
 		}
 	],
 	"variable": [
@@ -338,7 +459,7 @@
 			"id": "422849a8-1a6e-4cd9-8e28-1c7a06c71a02",
 			"key": "baseUrl",
 			"value": "http://18.12.1.1/api/v1",
-			"type": "any"
+			"type": "string"
 		}
 	]
 }

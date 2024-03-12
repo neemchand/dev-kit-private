@@ -24,5 +24,7 @@ jobs:
         run: docker-compose -f ci-docker-compose.yml exec -T dk-api composer run ci
       - name: Setup dev environment
         run: docker-compose -f ci-docker-compose.yml exec -T dk-api composer run dev
+      - name: make yaml public
+        run: docker-compose -f ci-docker-compose.yml exec -T dk-api \cp -fR index.yaml public/openapi/api.yaml
       - name: Postman tests
         run: docker-compose -f ci-docker-compose.yml exec -T dk-api postman collection run postman/collections/dk-collection.json

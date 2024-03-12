@@ -1,0 +1,19 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      created_at:
+        type: string
+      id:
+        type: integer
+      onboarded:
+        type: boolean
+  message:
+    type: string

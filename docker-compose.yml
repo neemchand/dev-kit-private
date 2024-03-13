@@ -29,7 +29,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: testing
     ports:
-      - "5445:5432"
+      - "5418:5432"
     networks:
       dk-network:
         ipv4_address: 18.12.1.2
@@ -39,7 +39,7 @@ services:
     container_name: dk-mailpit
     restart: always
     ports:
-      - "1011:8025"
+      - "1813:8025"
     networks:
       dk-network:
         ipv4_address: 18.12.1.3

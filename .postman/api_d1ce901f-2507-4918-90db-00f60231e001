@@ -9,6 +9,7 @@ id = d1ce901f-2507-4918-90db-00f60231e001
 
 [config.relations.collections]
 rootDirectory = postman/collections
+files[] = {"id":"18363537-4a724a62-e4c3-47ff-b928-0b78bab8ae3d","path":"ci-collection.json","metaData":{"generateCollectionPreferences":"{\"requestNameSource\":\"Fallback\",\"indentCharacter\":\"Space\",\"parametersResolution\":\"Schema\",\"folderStrategy\":\"Paths\",\"includeAuthInfoInExample\":true,\"enableOptionalParameters\":true,\"keepImplicitHeaders\":false,\"includeDeprecated\":true,\"alwaysInheritAuthentication\":false,\"updateCollectionSync\":true,\"requestParametersResolution\":\"Schema\",\"exampleParametersResolution\":\"Schema\"}"}}
 
 [config.relations.collections.metaData]
 
